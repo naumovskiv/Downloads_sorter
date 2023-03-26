@@ -45,19 +45,19 @@ if not os.path.exists("Downloaded Powerpoints"):
 files = os.listdir()
 for file in files:
     if file.endswith(document_ext):
-        print(os.path.abspath(file))
+        #print(os.path.abspath(file))
         old_path = os.path.abspath(file)
         shutil.move(old_path, "Downloaded Documents")
     elif file.endswith(image_ext):
-        print(os.path.abspath(file))
+        #print(os.path.abspath(file))
         old_path = os.path.abspath(file)
         shutil.move(old_path, "Downloaded Images")    
     elif file.endswith(powerpoint_ext):
-        print(os.path.abspath(file))
+        #print(os.path.abspath(file))
         old_path = os.path.abspath(file)
         shutil.move(old_path, "Downloaded Powerpoints")
     elif file.endswith('.html'):
-        print(os.path.abspath(file))
+        #print(os.path.abspath(file))
         old_path = os.path.abspath(file)
         shutil.move(old_path, "Downloaded HTMLs")
 
