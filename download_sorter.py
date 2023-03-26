@@ -3,6 +3,11 @@ import os
 from pathlib import Path
 import shutil
 
+#use tuples for folders with multiple file extensions 
+document_ext = (".txt", ".pdf", ".docx", ".doc")
+image_ext = (".jpg", ".png", ".gif")
+powerpoint_ext = (".pptx", ".pptm", ".ppt")
+
 # find default path to downloads
 download_path = str(Path.home() / "Downloads")
 
@@ -27,49 +32,33 @@ if path_check.lower() == 'no':
 os.chdir(download_path)
 
 # check for directories for files, otherwise make them
-if not os.path.exists("Downloaded TXTs"):
-    os.makedirs("Downloaded TXTs")
-if not os.path.exists("Downloaded PDFs"):
-    os.makedirs("Downloaded PDFs")
+if not os.path.exists("Downloaded Documents"):
+    os.makedirs("Downloaded Documents")
+if not os.path.exists("Downloaded Images"):
+    os.makedirs("Downloaded Images")
 if not os.path.exists("Downloaded HTMLs"):
     os.makedirs("Downloaded HTMLs")
 if not os.path.exists("Downloaded Powerpoints"):
     os.makedirs("Downloaded Powerpoints")
-if not os.path.exists("Downloaded Word Docs"):
-    os.makedirs("Downloaded Word Docs")
-if not os.path.exists("Downloaded Images"):
-    os.makedirs("Downloaded Images")
 
 # move files to respective directories by extension
 files = os.listdir()
-for i in files:
-    if i.endswith('.txt'):
-        print(os.path.abspath(i))
-        old_path = os.path.abspath(i)
-        shutil.move(old_path, "Downloaded TXTs")
-    elif i.endswith('.pdf'):
-        print(os.path.abspath(i))
-        old_path = os.path.abspath(i)
-        shutil.move(old_path, "Downloaded PDFs")
-    elif i.endswith('.html'):
-        print(os.path.abspath(i))
-        old_path = os.path.abspath(i)
-        shutil.move(old_path, "Downloaded HTMLs")
-    elif i.endswith('.pptx'):
-        print(os.path.abspath(i))
-        old_path = os.path.abspath(i)
+for file in files:
+    if file.endswith(document_ext):
+        print(os.path.abspath(file))
+        old_path = os.path.abspath(file)
+        shutil.move(old_path, "Downloaded Documents")
+    elif file.endswith(image_ext):
+        print(os.path.abspath(file))
+        old_path = os.path.abspath(file)
+        shutil.move(old_path, "Downloaded Images")    
+    elif file.endswith(powerpoint_ext):
+        print(os.path.abspath(file))
+        old_path = os.path.abspath(file)
         shutil.move(old_path, "Downloaded Powerpoints")
-    elif i.endswith('.docx'):
-        print(os.path.abspath(i))
-        old_path = os.path.abspath(i)
-        shutil.move(old_path, "Downloaded Word Docs")
-    elif i.endswith('.png'):
-        print(os.path.abspath(i))
-        old_path = os.path.abspath(i)
-        shutil.move(old_path, "Downloaded Images")
-    elif i.endswith('.jpg'):
-        print(os.path.abspath(i))
-        old_path = os.path.abspath(i)
-        shutil.move(old_path, "Downloaded Images")
+    elif file.endswith('.html'):
+        print(os.path.abspath(file))
+        old_path = os.path.abspath(file)
+        shutil.move(old_path, "Downloaded HTMLs")
 
 print("Sorting Complete!")
